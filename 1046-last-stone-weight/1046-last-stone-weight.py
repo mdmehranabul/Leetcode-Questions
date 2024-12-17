@@ -12,7 +12,8 @@ class Solution:
         stones.append(0)
         return abs(stones[0])
 
-
+# Time Complexity - O(nlogn)
+# Space Complexity - O(n)
 
 
 
