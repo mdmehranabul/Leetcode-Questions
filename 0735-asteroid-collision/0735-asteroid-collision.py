@@ -14,4 +14,7 @@ class Solution:
             
             if ast: stack.append(ast)
         return stack
+
+# Time Complexity - O(n)
+# Space Complexity - O(n)
         
