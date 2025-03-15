@@ -7,9 +7,8 @@ class MinStack:
 
     def push(self, val: int) -> None:
         self.stack.append(val)
-        val=min(val,self.minstack[-1] if self.minstack else val)
+        val=min(val, self.minstack[-1] if self.minstack else val)
         self.minstack.append(val)
-        
 
     def pop(self) -> None:
         self.stack.pop()
@@ -22,6 +21,7 @@ class MinStack:
 
     def getMin(self) -> int:
         return self.minstack[-1]
+        
 
 
 # Your MinStack object will be instantiated and called as such:
@@ -30,7 +30,3 @@ class MinStack:
 # obj.pop()
 # param_3 = obj.top()
 # param_4 = obj.getMin()
-
-
-# Time complexity - O(1)
-# Space complexity - O(n)
