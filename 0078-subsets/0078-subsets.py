@@ -1,19 +1,19 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        curset,res=[],[]
+        res,curr=[],[]
 
-        def dfs(i):
+        def backtrack(i):
 
             if i==len(nums):
-                res.append(curset.copy())
+                res.append(curr.copy())
                 return
-            curset.append(nums[i])
-            dfs(i+1)
-            curset.pop()
-            dfs(i+1)
-        dfs(0)
+            
+            curr.append(nums[i])
+            backtrack(i+1)
+
+            curr.pop()
+            backtrack(i+1)
+        
+        backtrack(0)
         return res
-    
-# Time complexity - O(n*2^n)
-# Space complexity - O(n)
         
