@@ -1,24 +1,29 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        curset,res=[],[]
+        res,curr=[],[]
         candidates.sort()
-        def dfs(i,total):
+
+        def backtrack(i,total):
+
             if total==target:
-                res.append(curset.copy())
+                res.append(curr.copy())
                 return
-            
-            if i==len(candidates) or total>target:
+
+            if i>=len(candidates) or total>target:
                 return
-            
-            curset.append(candidates[i])
-            dfs(i+1,total+candidates[i])
-            curset.pop()
-            while i+1<len(candidates) and candidates[i]==candidates[i+1]:
+
+            curr.append(candidates[i])
+            backtrack(i+1,total+candidates[i])
+
+            while i+1>0 and i+1<len(candidates) and candidates[i]==candidates[i+1]:
                 i+=1
-            dfs(i+1,total)
-        dfs(0,0)
+
+            curr.pop()
+            backtrack(i+1,total)
+
+        backtrack(0,0)
         return res
 
-# Time Complexity - O(n*2^n)
-# Space Complexity - O(n)
+
+            
         
