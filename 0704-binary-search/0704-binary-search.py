@@ -1,18 +1,16 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        L,U=0,len(nums)-1
-        #M=int((U+L)/2)
+        l,r=0,len(nums)-1
 
-        while L<=U:
-            M=L+(U-L)//2
-            if (nums[M]==target):
-                return M
-            elif nums[M]<target:
-                L=M+1
+        while l<=r:
+            mid=l+(r-l)//2
+
+            if nums[mid]==target:
+                return mid
+            elif nums[mid]<target:
+                l=mid+1
             else:
-                U=M-1
+                r=mid-1
         return -1
 
-#Time Complexity - O(log n)
-#Space Complexity - O(n)
         
