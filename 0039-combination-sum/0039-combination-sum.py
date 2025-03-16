@@ -1,22 +1,21 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        curset,res=[],[]
+        res,curr=[],[]
 
-        def dfs(i,total):
-            if i==len(candidates) or total>target:
+        def backtrack(i,total):
+
+            if total==target:
+                res.append(curr.copy())
                 return
             
-            if total==target:
-                res.append(curset.copy())
+            if i>=len(candidates) or total>target:
                 return
-            #print(curset)
-            curset.append(candidates[i])
-            dfs(i,total+candidates[i])
-            curset.pop()
-            dfs(i+1,total)
 
-        dfs(0,0)
-        return res
-    
-# Time Complexity - O(T.2^n)
-# Space Complexity - O(T)
+            curr.append(candidates[i])
+            backtrack(i,total+candidates[i])
+
+            curr.pop()
+            backtrack(i+1,total)
+
+        backtrack(0,0)
+        return res    
