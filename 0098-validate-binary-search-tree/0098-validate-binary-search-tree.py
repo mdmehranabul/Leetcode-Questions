@@ -7,15 +7,11 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
-        def bin_tree(root,low,high):
+        def dfs(root,left,right):
             if not root: return True
-            if not (root.val>low and root.val<high): return False
 
-            return (bin_tree(root.left,low,root.val) and bin_tree(root.right,root.val,high))
+            if not(root.val>left and root.val<right): return False
+
+            return (dfs(root.left,left,root.val) and dfs(root.right,root.val,right))
         
-
-        return bin_tree(root,float("-infinity"),float("infinity"))
-
-# Time complexity - O(n)
-# Space complexity - O(n)
-        
+        return dfs(root,float("-infinity"),float("infinity"))
