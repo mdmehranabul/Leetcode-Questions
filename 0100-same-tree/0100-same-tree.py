@@ -8,15 +8,12 @@ class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 
         def dfs(p,q):
-            if not p and not q: return True
 
+            if not p and not q: return True
             if not p or not q or p.val!=q.val: return False
 
             return dfs(p.left,q.left) and dfs(p.right,q.right)
+        
         return dfs(p,q)
-
-# Time Complexity - O(p + q) where p and q are the length of the two tree
-# Time Complexity - O(h)
-
 
         
