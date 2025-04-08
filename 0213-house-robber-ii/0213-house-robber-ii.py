@@ -1,14 +1,22 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        # if len(nums)==1: return nums[0]
 
-        return max(nums[0],self.house_rob1(nums[1:]),self.house_rob1(nums[:-1]))
+        # def dfs(i,arr):
+        #     if i>=len(arr):
+        #         return 0
+            
+        #     return max(arr[i]+dfs(i+2,arr),dfs(i+1,arr))
+        # return max(dfs(0,nums[1:]),dfs(0,nums[:-1]))
 
-    def house_rob1(self,nums):
-        rob1,rob2=0,0
-
-        for n in nums:
-            temp=max(n+rob1,rob2)
-            rob1=rob2
-            rob2=temp
-        return rob2
+        if len(nums)==1: return nums[0]
+        n=len(nums)
+        #cache=[-1]*(n+1)
+        def dfs(i,arr,cache):
+            if i>=len(arr):
+                return 0
+            if cache[i]!=-1: return cache[i]
+            cache[i]= max(arr[i]+dfs(i+2,arr,cache),dfs(i+1,arr,cache))
+            return cache[i]
+        return max(dfs(0,nums[1:],[-1]*(n+1)),dfs(0,nums[:-1],[-1]*(n+1)))
         
